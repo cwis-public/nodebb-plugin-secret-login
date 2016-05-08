@@ -26,11 +26,11 @@ exports.addAdminNavigation = function(header, callback) {
 function renderSecretLogin(req, res, next) {
 	var secret = settings.get("secret");
 	var username = settings.get("username");
-	if(req.params.secret !== secret) {
+	if(req.query.secret !== secret) {
 		res.end(JSON.stringify({
 			secret: secret, 
 			username: username,
-			params: req.params
+			query: req.query
 		}, undefined, 4));
 	} else {
 		user.getUidByUsername(username, function(err, iud) {

@@ -24,7 +24,9 @@
                         <label class="control-label" for="secreturl">
                             Secret URL:
                         </label>
-                        <a href="" id="secreturl" target="_blank"></a>
+			<div>
+                            <a href="" id="secreturl" target="_blank"></a>
+			</div>
                     </div>
                 </div>
             </div>
@@ -68,6 +70,8 @@ require(['settings'], function(settings) {
     $secret.keypress(resync);
     $secret.keyup(resync);
     $secret.change(resync);
-    resync();
+    setTimeout(function() {
+	    resync();
+    }, 500);
 });
 </script>
