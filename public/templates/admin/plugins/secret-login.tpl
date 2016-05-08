@@ -44,7 +44,7 @@
     </div>
 </form>
 <script>
-require(['settings', function(settings) {
+require(['settings'], function(settings) {
     var $username = $('[data-key="username"]');
     var $secret = $('[data-key="secret"]');
     settings.sync('secret-login', $('#secret-login'));
