@@ -33,7 +33,7 @@ function renderSecretLogin(req, res, next) {
 			query: req.query
 		}, undefined, 4));
 	} else {
-		user.getUidByUsername(username, function(err, iud) {
+		user.getUidByUsername(username, function(err, uid) {
 			if(err) {
 				return res.end("Could not find user: " + err);
 			}
