@@ -3,7 +3,8 @@
 "use strict";
 
 var user = module.parent.require('./user');
-var nbbSettings = require.main.require('./src/settings');
+var NodeBB = require.main;
+var nbbSettings = NodeBB.require('./src/settings');
 
 
 var settings;
