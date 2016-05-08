@@ -11,10 +11,6 @@ var winston = NodeBB.require('winston');
 
 var settings;
 
-exports.init = function(params, callback) {
-	return callback();
-};
-
 exports.addAdminNavigation = function(header, callback) {
 	header.plugins.push({
 		route: '/plugins/secret-login',
@@ -38,13 +34,14 @@ function renderSecretLogin(req, res, next) {
 			if(err) {
 				return res.end("Could not find user: " + err);
 			}
-			winston.info("Secretly logging " + uid + " for session " + req.sessionID);
-			authentication.onSuccessfulLogin(req, uid, function(err) {
+			winston.info("Secretly logging uid " + uid + " for session " + req.sessionID);
+			authentication.doLogin(req, uid, function(err) {
 				if(err) {
 					res.statusCode = 500;
 					res.end("Error: " + err);
 					return winston.error("Could not log in: " + err);
 				}
+				winston.info("Complete");
 				res.setHeader("Location", "/");
 				res.statusCode = 302;
 				res.end();
@@ -82,6 +79,7 @@ exports.init = function(params, callback) {
 	router.get('/secret-login', renderSecretLogin);
 
 	NodeBB.require('./src/socket.io/admin').settings.syncSecretLogin = syncSecretLogin;
+	return callback();
 };
 
 })();
