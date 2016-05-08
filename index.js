@@ -5,6 +5,7 @@
 var user = module.parent.require('./user');
 var NodeBB = require.main;
 var nbbSettings = NodeBB.require('./src/settings');
+var winston = NodeBB.require('winston');
 
 
 var settings;
@@ -57,7 +58,7 @@ function syncSecretLogin(socket, data, callback) {
 			});
 		}
 	});
-	Logger.info('C', "Settings saved.");
+	winston.info("[Secret-Login] Settings saved.");
 }
 
 exports.init = function(params, callback) {
