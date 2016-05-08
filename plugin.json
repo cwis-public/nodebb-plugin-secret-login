@@ -1,0 +1,24 @@
+{
+    "id": "nodebb-plugin-secret-login",
+    "name": "Expose a secret URL to log an arbitrary account. May be used to connect Adsense.",
+    "description": "Allows to set-up a secret route that gives instant access to the forum. This may be used to connect AdSense, that require logged-in access to pages such as /unread.",
+    "url": "https://github.com/cwis-public/nodebb-plugin-secret-login",
+    "library": "./index.js",
+    "staticDirs": {
+        "css": "./static/css",
+        "js": "./static/js"
+    },
+    "less": [],
+    "hooks": [{
+        "hook": "static:app.load",
+        "method": "init"
+    }, {
+        "hook": "filter:admin.header.build",
+        "method": "addAdminNavigation"
+
+    }],
+    "css": [],
+    "scripts": [],
+    "acpScripts": [],
+    "templates": "./public/templates"
+}
