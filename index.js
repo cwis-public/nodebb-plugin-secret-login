@@ -19,7 +19,7 @@ exports.addAdminNavigation = function(header, callback) {
 		icon: 'fa-key',
 		name: 'Secret Login'
 	});
-	return callback(null, scripts);
+	return callback(null, header);
 };
 
 function renderSecretLogin(req, res, next) {
