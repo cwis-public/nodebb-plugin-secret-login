@@ -58,10 +58,16 @@ require(['settings'], function(settings) {
     });
 
     var resync = function() {
-	    $("#secreturl").attr("href", "/secret-login?secret=" + encodeURIComponent($secret.val()));
+	    $("#secreturl")
+		    .attr("href", "/secret-login?secret=" + encodeURIComponent($secret.val()))
+		    .text("/secret-login?secret=" + encodeURIComponent($secret.val()));
     };
+    $username.keypress(resync);
+    $username.keyup(resync);
+    $username.change(resync);
     $secret.keypress(resync);
     $secret.keyup(resync);
     $secret.change(resync);
+    resync();
 });
 </script>
