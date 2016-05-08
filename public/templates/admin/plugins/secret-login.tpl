@@ -16,9 +16,15 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="key">
-                            Secret: //{hostname}/secret-login?secret={secret}
+                            Secret:
                         </label>
                         <input type="text" class="form-control" data-key="secret" id="secret" placeholder="some_random_characters"></input>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="secreturl">
+                            Secret URL:
+                        </label>
+                        <a href="" id="secreturl" target="_blank"></a>
                     </div>
                 </div>
             </div>
@@ -50,5 +56,12 @@ require(['settings', function(settings) {
           });
         });
     });
+
+    var resync = function() {
+	    $("#secreturl").attr("href", "/secret-login?secret=" + encodeURIComponent($secret.val()));
+    };
+    $secret.keypress(resync);
+    $secret.keyup(resync);
+    $secret.change(resync);
 });
 </script>
