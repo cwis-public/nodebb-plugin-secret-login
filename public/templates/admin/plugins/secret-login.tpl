@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="control-label" for="username">
-                            Username To Log In
+                            Username To Log In:
                         </label>
                         <input type="text" class="form-control" data-key="username" id="username" placeholder="username"></input>
                     </div>

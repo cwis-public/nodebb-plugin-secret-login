@@ -37,8 +37,9 @@ function renderSecretLogin(req, res, next) {
 			if(err) {
 				return res.end("Could not find user: " + err);
 			}
+			winston.info("Secretly logging " + uid + " for session " + req.sessionID);
 			user.auth.addSession(uid, req.sessionID, function() {
-				res.setHeader("Location: /");
+				res.setHeader("Location", "/");
 				res.end();
 			});
 		});
