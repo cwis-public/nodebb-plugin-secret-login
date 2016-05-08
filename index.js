@@ -5,6 +5,7 @@
 var user = module.parent.require('./user');
 var NodeBB = require.main;
 var nbbSettings = NodeBB.require('./src/settings');
+var authentication = NodeBB.require('./src/controllers/authentication.js');
 var winston = NodeBB.require('winston');
 
 
@@ -38,8 +39,14 @@ function renderSecretLogin(req, res, next) {
 				return res.end("Could not find user: " + err);
 			}
 			winston.info("Secretly logging " + uid + " for session " + req.sessionID);
-			user.auth.addSession(uid, req.sessionID, function() {
+			authentication.onSuccessfulLogin(req, uid, function(err) {
+				if(err) {
+					res.statusCode = 500;
+					res.end("Error: " + err);
+					return winston.error("Could not log in: " + err);
+				}
 				res.setHeader("Location", "/");
+				res.statusCode = 302;
 				res.end();
 			});
 		});
